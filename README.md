@@ -2,7 +2,7 @@
 
 A lightweight, 100% open-source image classification model designed for on-device transfer learning.
 
-🇫🇮 Designed and trained in Eurajoki, Finland by [BC Bertenex Oy](https://bertenex.com)
+🇫🇮 Designed and trained in Eurajoki, Finland by [BC Bertenex Oy](https://bcbertenex.com)
 
 |  |  |
 |---|---|
@@ -180,4 +180,4 @@ Training data: [OpenImages V7](https://storage.googleapis.com/openimages/web/ind
 
 ---
 
-*Built by [BC Bertenex Oy](https://bertenex.com), Eurajoki, Finland*
+*Built by [BC Bertenex Oy](https://bcbertenex.com), Eurajoki, Finland*
