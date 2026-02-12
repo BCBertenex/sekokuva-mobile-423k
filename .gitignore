@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Training data (downloaded via prepare_data_clean.py)
+data/
+
+# Model checkpoints and exports (download from HuggingFace)
+checkpoints/
+checkpoints_old/
+checkpoints_old_2/
+exported/
+pretrained/
+
+# HuggingFace upload staging
+huggingface_upload/
+github_upload/
+
+# Test images
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.bmp
+
+# Backup files
+*_backup.py
