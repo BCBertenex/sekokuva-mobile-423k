@@ -1,9 +1,9 @@
 """
-SekoKuva-Mobile-Net — Training Pipeline
+SekoKuva Mobile — Training Pipeline
 ========================================
 Copyright (c) 2026 BC Bertenex Oy
 
-This script trains SekoKuva-Mobile-Net on OpenImages V7 (or any image dataset).
+This script trains SekoKuva Mobile on OpenImages V7 (or any image dataset).
 Designed to run on CSC LUMI supercomputer or any machine with a GPU.
 
 Training enhancements (all enabled by default):
@@ -42,7 +42,7 @@ from torch.utils.data import DataLoader, WeightedRandomSampler
 from torch.optim.swa_utils import AveragedModel, SWALR
 from torchvision import datasets, transforms
 
-from sekokuva_mobile_net.model import sekokuva_mobilenet
+from sekokuva_mobile.model import sekokuva_mobile
 
 
 # =============================================================================
@@ -332,7 +332,7 @@ def validate(model, dataloader, criterion, device):
 # =============================================================================
 
 def main():
-    parser = argparse.ArgumentParser(description="Train SekoKuva-Mobile-Net")
+    parser = argparse.ArgumentParser(description="Train SekoKuva Mobile")
     parser.add_argument("--data_dir", type=str, required=True,
                         help="Path to dataset (ImageFolder format: data_dir/class_name/image.jpg)")
     parser.add_argument("--output_dir", type=str, default="./checkpoints",
@@ -477,11 +477,11 @@ def main():
     # =========================================================================
     # Create Model
     # =========================================================================
-    model = sekokuva_mobilenet(num_classes=num_classes, input_size=args.input_size)
+    model = sekokuva_mobile(num_classes=num_classes, input_size=args.input_size)
     model = model.to(device)
     
     total_params = sum(p.numel() for p in model.parameters())
-    print(f"SekoKuva-Mobile-Net: {total_params:,} parameters")
+    print(f"SekoKuva Mobile: {total_params:,} parameters")
     
     # Loss function: Cross-Entropy with label smoothing
     # Label smoothing (0.1) prevents the network from being overconfident.

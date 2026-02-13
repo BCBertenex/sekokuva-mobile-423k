@@ -1,4 +1,4 @@
-# SekoKuva MobileNet 423K
+# SekoKuva Mobile 423K
 
 A lightweight, 100% open-source image classification model designed for on-device transfer learning.
 
@@ -16,11 +16,11 @@ A lightweight, 100% open-source image classification model designed for on-devic
 
 ## Why This Model?
 
-Most pre-trained mobile models carry weights derived from ImageNet under ambiguous license terms. **SekoKuva MobileNet 423K has a 100% clean license chain** — architecture, training code, training data, and weights are all openly and permissively licensed. You can use it in commercial products with full legal clarity.
+Most pre-trained mobile models carry weights derived from ImageNet under ambiguous license terms. **SekoKuva Mobile 423K has a 100% clean license chain** — architecture, training code, training data, and weights are all openly and permissively licensed. You can use it in commercial products with full legal clarity.
 
 ## Pre-trained Weights
 
-**Download from HuggingFace:** [BCBertenex/sekokuva-mobilenet-423k](https://huggingface.co/BCBertenex/sekokuva-mobilenet-423k)
+**Download from HuggingFace:** [BCBertenex/sekokuva-mobile-423k](https://huggingface.co/bcbertenex/sekokuva-mobile-423k)
 
 The HuggingFace repo contains:
 - PyTorch checkpoints (`pytorch/best.pt`, `pytorch/swa.pt`)
@@ -31,8 +31,8 @@ The HuggingFace repo contains:
 
 ```bash
 # Clone this repo
-git clone https://github.com/BCBertenex/sekokuva-mobile-net-423k.git
-cd sekokuva-mobile-net-423k
+git clone https://github.com/BCBertenex/sekokuva-mobile-423k.git
+cd sekokuva-mobile-423k
 
 # Install dependencies
 pip install torch torchvision onnx onnxruntime numpy pillow tqdm
@@ -41,7 +41,7 @@ pip install torch torchvision onnx onnxruntime numpy pillow tqdm
 pip install huggingface_hub
 python -c "
 from huggingface_hub import snapshot_download
-snapshot_download('BCBertenex/sekokuva-mobilenet-423k', local_dir='./pretrained')
+snapshot_download('BCBertenex/sekokuva-mobile-423k', local_dir='./pretrained')
 "
 ```
 
@@ -51,11 +51,11 @@ snapshot_download('BCBertenex/sekokuva-mobilenet-423k', local_dir='./pretrained'
 import torch
 from PIL import Image
 from torchvision import transforms
-from sekokuva_mobile_net.model import SekoKuvaMobileNet
+from sekokuva_mobile.model import SekoKuvaMobile
 
 # Load model
 checkpoint = torch.load("pretrained/pytorch/swa.pt", map_location="cpu")
-model = SekoKuvaMobileNet(num_classes=65)
+model = SekoKuvaMobile(num_classes=65)
 model.load_state_dict(checkpoint["model_state_dict"])
 model.eval()
 
@@ -122,7 +122,7 @@ All enabled by default, disable with `--no_xxx` flags:
 
 ## Architecture
 
-Depthwise separable convolutions (MobileNetV1-style) arranged in 5 stages:
+Depthwise separable convolutions arranged in 5 stages:
 
 ```
 Input: 224×224×3 (RGB)
@@ -135,13 +135,13 @@ Input: 224×224×3 (RGB)
   → Optional: Linear classifier              → num_classes
 ```
 
-ReLU6 activation, BatchNorm, dropout 0.2. See [model.py](sekokuva_mobile_net/model.py) for the full annotated implementation.
+ReLU6 activation, BatchNorm, dropout 0.2. See [model.py](sekokuva_mobile/model.py) for the full annotated implementation.
 
 ## Repository Structure
 
 ```
-sekokuva-mobile-net-423k/
-├── sekokuva_mobile_net/
+sekokuva-mobile-423k/
+├── sekokuva_mobile/
 │   ├── __init__.py
 │   └── model.py              ← Full architecture (395 lines, heavily commented)
 ├── train.py                   ← Training pipeline with 6 enhancement techniques
@@ -157,8 +157,8 @@ sekokuva-mobile-net-423k/
 
 | Model | Parameters | Status |
 |---|---|---|
-| **SekoKuva MobileNet 423K** | **423K** | **✅ Released** |
-| SekoKuva MobileNet 5M | ~5M | 🔨 In development |
+| **SekoKuva Mobile 423K** | **423K** | **✅ Released** |
+| SekoKuva Mobile 5M | ~5M | 🔨 In development |
 
 ## License
 
@@ -169,11 +169,11 @@ Training data: [OpenImages V7](https://storage.googleapis.com/openimages/web/ind
 ## Citation
 
 ```bibtex
-@misc{sekokuva2026mobilenet423k,
-  title     = {SekoKuva MobileNet 423K: A Lightweight Open-Source Feature Extractor for On-Device Transfer Learning},
+@misc{sekokuva2026mobile423k,
+  title     = {SekoKuva Mobile 423K: A Lightweight Open-Source Feature Extractor for On-Device Transfer Learning},
   author    = {{BC Bertenex Oy}},
   year      = {2026},
-  url       = {https://huggingface.co/BCBertenex/sekokuva-mobilenet-423k},
+  url       = {https://huggingface.co/BCBertenex/sekokuva-mobile-423k},
   note      = {Apache 2.0 License. Trained on OpenImages V7 (CC BY 4.0).}
 }
 ```

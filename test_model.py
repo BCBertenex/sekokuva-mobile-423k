@@ -1,5 +1,5 @@
 """
-SekoKuva-Mobile-Net — Test & Demo Script
+SekoKuva Mobile — Test & Demo Script
 ==========================================
 Copyright (c) 2026 BC Bertenex Oy
 
@@ -12,7 +12,7 @@ Usage:
     python test_model.py --image photo.jpg
 
     # Classify an image using the ONNX model:
-    python test_model.py --image photo.jpg --onnx exported/sekokuva_mobilenet_features.onnx
+    python test_model.py --image photo.jpg --onnx exported/sekokuva_mobile_features.onnx
 
     # Use a webcam snapshot (requires opencv):
     python test_model.py --webcam
@@ -99,7 +99,7 @@ def load_class_names(path="checkpoints/class_names.json"):
 def test_pytorch(checkpoint_path, input_array, class_names=None):
     """Run inference using the PyTorch checkpoint (full classifier)."""
     import torch
-    from sekokuva_mobile_net.model import SekoKuvaMobileNet
+    from sekokuva_mobile.model import SekoKuvaMobile
 
     # Load checkpoint
     ckpt = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
@@ -108,7 +108,7 @@ def test_pytorch(checkpoint_path, input_array, class_names=None):
     saved_input_size = ckpt.get("input_size", INPUT_SIZE)
 
     # Rebuild model
-    model = SekoKuvaMobileNet(num_classes=num_classes, input_size=saved_input_size)
+    model = SekoKuvaMobile(num_classes=num_classes, input_size=saved_input_size)
     model.load_state_dict(ckpt["model_state_dict"])
     model.eval()
 
@@ -257,7 +257,7 @@ def capture_webcam(save_path="webcam_capture.jpg"):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Test SekoKuva-Mobile-Net on an image"
+        description="Test SekoKuva Mobile on an image"
     )
     parser.add_argument(
         "--image", type=str, default=None,
@@ -320,9 +320,9 @@ def main():
     # ── If both are available, also compare ──
     if args.onnx and os.path.exists(args.checkpoint):
         print("  TIP: Run without --onnx to also see PyTorch classification results")
-    elif not args.onnx and os.path.exists("exported/sekokuva_mobilenet_features.onnx"):
+    elif not args.onnx and os.path.exists("exported/sekokuva_mobile_features.onnx"):
         print("  TIP: Also test the ONNX model:")
-        print("    python test_model.py --random --onnx exported/sekokuva_mobilenet_features.onnx")
+        print("    python test_model.py --random --onnx exported/sekokuva_mobile_features.onnx")
 
 
 if __name__ == "__main__":

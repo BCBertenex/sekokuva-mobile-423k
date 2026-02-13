@@ -1,5 +1,5 @@
 """
-SekoKuva-Mobile-Net — Architecture Definition
+SekoKuva Mobile — Architecture Definition
 ==============================================
 Copyright (c) 2026 BC Bertenex Oy
 License: Apache 2.0
@@ -40,7 +40,7 @@ import torch.nn.functional as F
 
 class DepthwiseSeparableConv(nn.Module):
     """
-    One building block of SekoKuva-Mobile-Net.
+    One building block of SekoKuva Mobile.
     
     Think of it as one "processing step" that:
     1. Looks for spatial patterns (edges, textures, shapes) — depthwise conv
@@ -121,7 +121,7 @@ class DepthwiseSeparableConv(nn.Module):
 
 
 # =============================================================================
-# THE FULL NETWORK: SekoKuva-Mobile-Net
+# THE FULL NETWORK: SekoKuva Mobile
 # =============================================================================
 #
 # Below is the complete architecture. It's a sequence of layers that
@@ -149,9 +149,9 @@ class DepthwiseSeparableConv(nn.Module):
 #   "fingerprint like THIS → healthy leaf"
 #   "fingerprint like THAT → diseased leaf"
 
-class SekoKuvaMobileNet(nn.Module):
+class SekoKuvaMobile(nn.Module):
     """
-    SekoKuva-Mobile-Net — A lightweight feature extractor for mobile devices.
+    SekoKuva Mobile — A lightweight feature extractor for mobile devices.
     
     Designed by BC Bertenex Oy for the Uganda AI Education Pilot.
     
@@ -326,14 +326,14 @@ class SekoKuvaMobileNet(nn.Module):
 # HELPER FUNCTIONS
 # =============================================================================
 
-def sekokuva_mobilenet(num_classes: int = 300, **kwargs) -> SekoKuvaMobileNet:
-    """Create a SekoKuva-Mobile-Net for pre-training."""
-    return SekoKuvaMobileNet(num_classes=num_classes, **kwargs)
+def sekokuva_mobile(num_classes: int = 300, **kwargs) -> SekoKuvaMobile:
+    """Create a SekoKuva Mobile for pre-training."""
+    return SekoKuvaMobile(num_classes=num_classes, **kwargs)
 
 
-def sekokuva_mobilenet_features(**kwargs) -> SekoKuvaMobileNet:
-    """Create a SekoKuva-Mobile-Net in feature extraction mode (for the app)."""
-    return SekoKuvaMobileNet(num_classes=0, **kwargs)
+def sekokuva_mobile_features(**kwargs) -> SekoKuvaMobile:
+    """Create a SekoKuva Mobile in feature extraction mode (for the app)."""
+    return SekoKuvaMobile(num_classes=0, **kwargs)
 
 
 # =============================================================================
@@ -342,14 +342,14 @@ def sekokuva_mobilenet_features(**kwargs) -> SekoKuvaMobileNet:
 
 if __name__ == "__main__":
     # Create the model
-    model = sekokuva_mobilenet(num_classes=300)
+    model = sekokuva_mobile(num_classes=300)
     
     # Count parameters
     total_params = sum(p.numel() for p in model.parameters())
     trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     
     print("=" * 60)
-    print("  SekoKuva-Mobile-Net")
+    print("  SekoKuva Mobile")
     print("  Designed by BC Bertenex Oy")
     print("=" * 60)
     print(f"  Total parameters:     {total_params:>10,}")

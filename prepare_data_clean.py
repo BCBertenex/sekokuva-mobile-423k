@@ -1,5 +1,5 @@
 """
-SekoKuva-Mobile-Net — Clean OpenImages V7 Data Downloader
+SekoKuva Mobile — Clean OpenImages V7 Data Downloader
 ===========================================================
 Copyright (c) 2026 BC Bertenex Oy
 
@@ -184,7 +184,7 @@ def download_with_fiftyone_bbox(categories, max_per_class, output_dir, val_split
     os.makedirs(val_dir, exist_ok=True)
     
     print(f"\n{'='*60}")
-    print(f"  SekoKuva-Mobile-Net — Clean Data Download")
+    print(f"  SekoKuva Mobile — Clean Data Download")
     print(f"  Using BOUNDING BOX annotations only (human-verified)")
     print(f"{'='*60}")
     print(f"  Categories:     {len(categories)}")

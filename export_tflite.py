@@ -1,5 +1,5 @@
 """
-SekoKuva-Mobile-Net — Export to TFLite
+SekoKuva Mobile — Export to TFLite
 =======================================
 Copyright (c) 2026 BC Bertenex Oy
 
@@ -23,7 +23,7 @@ import subprocess
 
 import torch
 
-from sekokuva_mobile_net.model import SekoKuvaMobileNet
+from sekokuva_mobile.model import SekoKuvaMobile
 
 
 def check_dependencies():
@@ -163,7 +163,7 @@ def convert_onnx_to_tflite(onnx_path, tflite_path, quantize=True):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Export SekoKuva-Mobile-Net to TFLite")
+    parser = argparse.ArgumentParser(description="Export SekoKuva Mobile to TFLite")
     parser.add_argument("--checkpoint", type=str, required=True,
                         help="Path to trained PyTorch checkpoint (.pt)")
     parser.add_argument("--output_dir", type=str, default="./exported",
@@ -202,7 +202,7 @@ def main():
     input_size = checkpoint.get("input_size", 224)
     
     # Recreate model and load weights
-    model = SekoKuvaMobileNet(
+    model = SekoKuvaMobile(
         num_classes=num_classes,
         input_size=input_size
     )
@@ -215,14 +215,14 @@ def main():
     print()
     
     # Step 1: PyTorch → ONNX (always works)
-    onnx_path = os.path.join(args.output_dir, f"sekokuva_mobilenet_{args.mode}.onnx")
+    onnx_path = os.path.join(args.output_dir, f"sekokuva_mobile_{args.mode}.onnx")
     export_to_onnx(model, input_size, onnx_path, mode=args.mode)
     print()
     
     # Step 2: ONNX → TFLite (only if tensorflow + onnx2tf are available)
     if can_tflite:
         suffix = "_quantized" if args.quantize else "_float32"
-        tflite_path = os.path.join(args.output_dir, f"sekokuva_mobilenet_{args.mode}{suffix}.tflite")
+        tflite_path = os.path.join(args.output_dir, f"sekokuva_mobile_{args.mode}{suffix}.tflite")
         convert_onnx_to_tflite(onnx_path, tflite_path, quantize=args.quantize)
         print()
     

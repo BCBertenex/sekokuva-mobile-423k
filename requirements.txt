@@ -1,5 +1,5 @@
-# SekoKuva MobileNet 423K
-# https://github.com/BCBertenex/sekokuva-mobile-net-423k
+# SekoKuva Mobile 423K
+# https://github.com/BCBertenex/sekokuva-mobile-423k
 # Copyright (c) 2025-2026 BC Bertenex Oy — Apache 2.0
 
 # Core training
